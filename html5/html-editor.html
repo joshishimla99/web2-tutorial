@@ -45,7 +45,15 @@ $(document).ready(function() {
     
       $("#copy").click(function(){
           var textval = $("#code").val();
-          $('body', $('#copyarea').contents()).html(textval);
+          /**$('body', $('#copyarea').contents()).html(textval);**/
+          
+          //TODO Need to add compatibility to IE using contentWindow instead
+          // of document
+          var doc = $($("#copyarea")[0].contentDocument)[0];
+          // open, write content to, and close the document
+          doc.open();
+          doc.write(textval);
+          doc.close();
       });
     });
 </script>
@@ -99,8 +107,11 @@ $(document).ready(function() {
     background-color: #FFC;
     border: 1px solid #999;
 }
-textarea {
-  resize: none;
+
+textarea { 
+    font-size: 14px;
+    font-family: sans-serif;
+    resize: none;
 }
 iframe {
     margin:5px;
@@ -112,7 +123,7 @@ iframe {
     <div class="slide">
         <div class="parent">
             <div class="inner" >                
-                <textarea id="code" wrap="off" rows="35" cols="68"></textarea>
+                <textarea id="code" wrap="off" rows="35" cols="92"></textarea>
             </div>
             <div class="bar" id="shift-bar"></div>
             <div class="outer">
@@ -122,6 +133,6 @@ iframe {
         </div>
 
     </div>
-    <button id="copy">Copy</button>         
+    <button id="copy">Copy</button>
 </body>
 </html>
