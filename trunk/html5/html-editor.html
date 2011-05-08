@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<!-- References http://www.learningjquery.com/2009/02/slide-elements-in-different-directions -->
+<html>
+<script
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"
+    type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+      $('#shift-bar').mouseover(function() {
+        var $varthis = $(this);
+        $varthis.animate({
+            opacity:0.4
+        });
+      });
+    
+      $('#shift-bar').mouseout(function() {
+        var $varthis = $(this);
+        $varthis.animate({
+            opacity:1
+        });
+      });
+    
+      $('#shift-bar').click(function() {
+        var $textarea = $(this).siblings().filter(":first");
+        $textarea.animate({
+          left: parseInt($textarea.css('left'),10) == 0 ?
+            -$textarea.outerWidth() : 0
+        });
+       
+        var $lefty = $(this);
+        $lefty.animate({
+          left: parseInt($lefty.css('left'),10) == 10 ?
+            600 :
+            10
+        });
+    
+        var $textarea = $(this).siblings().filter(":last");
+        $textarea.animate({
+          left: parseInt($textarea.css('left'),10) == 15 ?
+            605 : 15,
+           width : parseInt($textarea.css('width'),10) == 592 ?     
+            1182 : 592     
+        });
+      });
+    
+      $("#copy").click(function(){
+          var textval = $("#code").val();
+          $('body', $('#copyarea').contents()).html(textval);
+      });
+    });
+</script>
+<style type="text/css">
+.slide .inner {
+    /** position relative required for animation **/
+    position: relative;
+    left: 0px;
+    /** Assigning width and height to half the total area **/ 
+    width : 580px;
+    height: 600px;
+    /** Adding padding for text to be displayed **/
+    padding: 6px;
+    /** Adding fore color and background color **/
+    background-color: #4C5;
+    color: #333;
+}
+
+.slide .outer {
+    /** position relative required for animation **/
+    position: absolute;
+    left: 605px;
+    top: 17px;
+    /** Assigning width and height to half the total area **/ 
+    width : 592px;
+    height: 588px;
+    /** Adding padding for text to be displayed **/
+    padding: 6px;
+    /** Adding fore color and background color **/
+    background-color: #E2C59C;
+    color: #333;
+}
+
+.slide .bar {
+    /** to exactly position the middle bar  **/
+    position: absolute;
+    left: 600px;
+    top: 16px;
+    width: 5px;
+    height: 602px;
+    /** Setting the color of the middle bar **/
+    background-color: #A7CFD9;
+    color: #333;
+}
+
+.slide {
+    overflow: hidden;
+    height: 600px;
+    width: 1200px;
+    margin: 1em 0;
+    background-color: #FFC;
+    border: 1px solid #999;
+}
+textarea {
+  resize: none;
+}
+iframe {
+    margin:5px;
+    height:100%;
+    width:100%;
+}
+</style>
+<body>
+    <div class="slide">
+        <div class="parent">
+            <div class="inner" >                
+                <textarea id="code" wrap="off" rows="35" cols="68"></textarea>
+            </div>
+            <div class="bar" id="shift-bar"></div>
+            <div class="outer">
+             <iframe id="copyarea" marginwidth="0" framespacing="0" marginheight="0" frameborder="0">
+             </iframe>
+            </div>
+        </div>
+
+    </div>
+    <button id="copy">Copy</button>         
+</body>
+</html>
