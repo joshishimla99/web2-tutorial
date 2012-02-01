@@ -1,0 +1,53 @@
+<html>
+    <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <title>BOSS Hosted Search Code Sample</title>
+    </head>
+
+
+    <body>
+        <p>My BOSS Hosted Search -- Header </p>
+
+        <form id="searchform" onsubmit="return search();">
+            <input type="text" id="searchbox" />
+<!-- Here the publisher is hosting his own search box. The user will be able to enter the search query in this text box which in turn calls the YHS.Search(<query) javasript function to invoke the Boss Hosted Search experience.
+Once the Hosted Search experience has been invoked, the publisher may choose to hide this text box as the BOSS Hosted Search may also contain the Yahoo! Search Box (depending on the settings chosen in the BOSS Dashboard).
+-->
+            <input type="submit" value="Submit"/>
+        </form>
+
+        <div id="bossDiv">
+        </div>
+<!-- This is the empty div tag within which the BOSS Hosted Search experience will be shown. You will need to replace the <div_id> with this div id ('bossDiv') in the Javascript code snippet -->
+
+        <p>My BOSS Hosted Search -- Footer </p>
+
+        <script type="text/javascript">
+            function search() {
+                YHS.search(document.getElementById("searchbox").value);
+/*the YHS.Search(<query>) function invokes the BOSS Hosted Search experience. This function takes the 'search query'
+as the argument which the BOSS Hosted Search iframe will show the results for.*/
+                return false;
+            }
+        </script>
+
+<!-- Replace the following with the code snippet provided -->
+
+        <script type="text/javascript" src="http://d.yimg.com/rj/v1/yhs.js" >
+        </script>
+
+        <script>
+        YHS.init({
+        	  hspart: "insideview",
+        	  hsimp: "yhs-selfserve_4f2284625dbb3156",
+        	  market: "us",
+        	  dom_id: "bossDiv", //id of div tag under which BOSS Hosted Search iframe will be rendered
+              searchbox_id: "searchbox", /*Optional. If you have turned off the Yahoo! Search Box, only then enter the id of your text box here - this is recommended to enable advanced functions such as auto-update when a user clicks on a Related Search/Also Try query from within the BOSS Hosted Search iframe */
+              debug: false //Optional. set to true only in development or testing environment
+        	});
+        </script>
+
+<!-- End of replacement -->
+
+    </body>
+</html>
