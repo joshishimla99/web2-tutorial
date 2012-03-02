@@ -17,13 +17,13 @@ import org.apache.poi.ss.usermodel.Row;
 
 public class ExcelParserPOI {
 	
-	private XeroundDAO xeroundDAO; 
+	private WordsDAO xeroundDAO; 
 	
-	public XeroundDAO getXeroundDAO() {
+	public WordsDAO getXeroundDAO() {
 		return xeroundDAO;
 	}
 
-	public void setXeroundDAO(XeroundDAO dao) {
+	public void setXeroundDAO(WordsDAO dao) {
 		this.xeroundDAO = dao;
 	}
 

@@ -8,12 +8,13 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import model.Word;
+
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
-import data.Word;
 
-public class XeroundDAOImpl implements XeroundDAO {
+public class XeroundDAOImpl implements WordsDAO {
 
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -54,5 +55,17 @@ public class XeroundDAOImpl implements XeroundDAO {
 		this.jdbcTemplate.update(queryString, paramMap);
 		System.out.println("Done populating the data");
 	}
+
+        public void storeSetence(String sentence, String words) {
+                System.out.println("Inserting data for " + sentence + " , " + words);
+                String queryString = "insert into words.setences values (0, :sentence, :words)";
+
+                Map<String, String> paramMap = new HashMap<String, String>();
+                paramMap.put("sentence", sentence);
+                paramMap.put("words", words);
+
+                this.jdbcTemplate.update(queryString, paramMap);
+                System.out.println("Done populating the data");                
+        }
 
 }

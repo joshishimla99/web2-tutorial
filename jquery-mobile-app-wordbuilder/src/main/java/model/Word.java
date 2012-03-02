@@ -1,4 +1,5 @@
-package data;
+package model;
+
 
 public class Word {
 	private String word;
