@@ -15,17 +15,12 @@ package execution;
  * limitations under the License.
  */
 
-import java.io.IOException;
-import java.net.URL;
-
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.GoogleApi;
-import org.scribe.builder.api.YahooApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
-import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 /**
@@ -44,9 +39,14 @@ class OAuthExample {
                                 .apiKey("956472147350.apps.googleusercontent.com")
                                 .apiSecret("-XowDwvlhiYagCIg78yYwcQS")
                                 .provider(GoogleApi.class)
-                                .scope("https://www.googleapis.com/auth/userinfo.email")
+                                // The "scope" parameter is required to specify the type of requests to be made.
+                                .scope("https://www.googleapis.com/auth/userinfo.email") 
                                 .build();
 
+                /**
+                 * Commented out the code for getting the authorization tokens.
+                 * 
+                 */
 //                Token requestToken = service.getRequestToken();
 //                String requestUrl = service.getAuthorizationUrl(requestToken);
 //                System.out.println(requestUrl);
@@ -73,7 +73,7 @@ class OAuthExample {
                 
                 Token accessToken = new Token("1/x0cFdCqxALInmpvl3UClLHGkV7la-6FxvG8p7un4Fd4", "chSaTbApwFW_ob10ilq4bRj7");
 
-                System.out.println("Making a call to Yahoo API");
+                System.out.println("Making a call to Google API");
                 OAuthRequest request = new OAuthRequest(Verb.GET, googleRequestURL + "?access_token" + accessToken.getToken());
                 service.signRequest(accessToken, request);
                 Response response = request.send();
