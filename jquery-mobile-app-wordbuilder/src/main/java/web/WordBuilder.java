@@ -52,6 +52,6 @@ public class WordBuilder {
                 }
                 sentence.setWordlist(wordlist);
                 wordsHandler.storeSentences(sentence);
-                return new ModelAndView("/thanks");
+                return new ModelAndView("thanks");
         }
 }
