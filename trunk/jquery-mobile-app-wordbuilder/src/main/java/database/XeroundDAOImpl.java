@@ -22,8 +22,8 @@ public class XeroundDAOImpl implements WordsDAO {
 		jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public List<Word> getResults(String alpha) {
-		String queryString = "SELECT * from words.wordlist where word like :alpha";
+	public List<Word> getResults(Character alpha) {
+		String queryString = "SELECT * from words.wordlist where alphabet = :alphabet";
 
 		ParameterizedRowMapper<Word> mapper = new ParameterizedRowMapper<Word>() {
 
@@ -38,7 +38,7 @@ public class XeroundDAOImpl implements WordsDAO {
 			}
 		};
 		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("alpha", alpha + "%");
+		paramMap.put("alphabet", alpha+ "");
 		return this.jdbcTemplate.query(queryString, paramMap, mapper);
 
 	}

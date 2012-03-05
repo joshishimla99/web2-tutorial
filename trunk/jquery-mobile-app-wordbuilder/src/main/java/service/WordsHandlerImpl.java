@@ -15,6 +15,10 @@ public class WordsHandlerImpl implements WordsHandler {
 	private WordsDAO wordsDAO;
 	private AlphabetSet wordSet;
 
+	WordsHandlerImpl() {
+	        wordSet = new AlphabetSet();
+	}
+	
 	public WordsDAO getWordsDAO() {
 		return wordsDAO;
 	}
@@ -23,16 +27,34 @@ public class WordsHandlerImpl implements WordsHandler {
 		this.wordsDAO = wordsDAO;
 	}
 
-	public List<Word> getRandomWords() {
+	public List<Word> getRandomWords(String alphabet)  {
+                Random random = new Random();
 		List<Word> words = new ArrayList<Word>();
-		Random random = new Random();
-		int index = (random.nextInt() % 26);
-		List<Word> list = wordsDAO.getResults(wordSet.getChar(index) + "");
-		for (int i = 0; i < 5; i++) {
-			words.add(list.get((random.nextInt() % list.size())));
+		char chosenChar;
+		if (alphabet != null && alphabet.length() == 1) {
+		        chosenChar = alphabet.charAt(0);
 		}
+		else {
+	                int index = getRandomCharIndex(random);
+	                chosenChar = wordSet.getChar(index);		        
+		}
+		List<Word> list = wordsDAO.getResults(chosenChar);
+		if (!(list.size() < 5)) {
+	                for (int i = 0; i < 5; i++) {
+	                        words.add(list.get(randomWordIndex(random, list)));
+	                }		        
+		}
+		
 		return words;
 	}
+
+        private int getRandomCharIndex(Random random) {
+                return Math.abs(random.nextInt()) % 26;
+        }
+
+        private int randomWordIndex(Random random, List<Word> list) {
+                return (Math.abs(random.nextInt())) % list.size();
+        }
 
 	public void storeSentences(Sentence sentence) {
 		String sentenceStr = sentence.getSentence();

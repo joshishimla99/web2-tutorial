@@ -15,7 +15,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Row;
 
-public class ExcelParserPOI {
+public class WordsMigration {
 	
 	private WordsDAO xeroundDAO; 
 	
