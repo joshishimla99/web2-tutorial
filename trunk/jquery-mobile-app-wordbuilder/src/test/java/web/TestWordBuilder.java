@@ -12,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.servlet.ModelAndView;
 
-@ContextConfiguration(locations={"classpath:application-servlet.xml"})
+@ContextConfiguration(locations={"classpath:xml/application-servlet.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestWordBuilder {
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -36,6 +37,7 @@ public class TestWordBuilder {
         public void testSentenceStorage() {
                 request.addParameter("sentence", "My name is A");
                 request.addParameter("words", "A,B");
-                wordbuilder.addSentence(request);
+                ModelAndView view = wordbuilder.addSentence(request);
+                Assert.assertEquals(view.getViewName(), "thanks");
         }
 }
