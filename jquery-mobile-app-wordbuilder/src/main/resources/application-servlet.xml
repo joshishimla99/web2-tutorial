@@ -17,6 +17,17 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<bean id="viewResolver"
+		class=" org.springframework.web.servlet.view. InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/html</value>
+		</property>
+		<property name="suffix">
+			<value>.html</value>
+		</property>
+	</bean>
+
+
 	<!-- enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="txManager" />
 
@@ -37,6 +48,12 @@
 		<property name="password" value="principia" />
 	</bean>
 
+	<bean id="wordsHandler" class="service.WordsHandlerImpl">
+		<property name="wordsDAO" ref="xeroundDAO" />
+	</bean>
 
+	<bean id="wordBuilder" class="web.WordBuilder">
+		<property name="wordsHandler" ref="wordsHandler" />
+	</bean>
 
 </beans>

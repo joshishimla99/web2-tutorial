@@ -7,7 +7,7 @@ public class AlphabetSet {
 
         private List<Character> characters;
 
-        AlphabetSet() {
+       public AlphabetSet() {
                 characters = new ArrayList<Character>();
                 int a = 65;
                 for (int i = 0; i < 26; i++) {
