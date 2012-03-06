@@ -30,14 +30,14 @@ public class WordBuilder {
 		this.wordsHandler = wordsHandler;
 	}
 
-	@RequestMapping(value = { "/words" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/words.amey" }, method = RequestMethod.GET)
 	public @ResponseBody
 	List<Word> getWords(HttpServletRequest request) {
 		String alphabet = request.getParameter("alphabet");
 		return wordsHandler.getRandomWords(alphabet);
 	}
 
-	@RequestMapping(value = { "/add/sentence" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/add/sentence.amey" }, method = RequestMethod.POST)
 	public ModelAndView addSentence(HttpServletRequest request) {
 		Sentence sentence = new Sentence();
 		sentence.setSentence(request.getParameter("sentence"));
