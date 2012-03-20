@@ -157,7 +157,7 @@ public class MovingPiling {
 
 	public void getCommands() {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Input.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("inputs/Input.txt"));
 			String pileSize = br.readLine();
 			int size = getInt(pileSize);
 			initialize(size);
