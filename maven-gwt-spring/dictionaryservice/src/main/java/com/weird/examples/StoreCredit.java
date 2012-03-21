@@ -27,6 +27,25 @@ public class StoreCredit {
 			}
 			return positions;
 		}
+		
+		Integer[] getNumbersFromSumWithMergeSort(int sum) {
+			Integer[] positions = new Integer[2];
+			MergeSort sort = new MergeSort();
+			sort.merge_sort(item_prices, 0, item_prices.length - 1);
+			int left = 0;
+			int right = item_prices.length - 1;
+			while (left <= right) {
+				if (sum < item_prices[right]) {
+					sum = (item_prices[right] - sum);
+					right--;
+				}
+				else {
+					sum = (sum - item_prices[right]);
+					left++;
+				}
+			}
+			return positions;
+		}		
 
 		private int getIndex(Integer[] item_prices2, int required, int previous) {
 			for (int i = 0; i < item_prices2.length; i++) {
@@ -40,7 +59,7 @@ public class StoreCredit {
 		void getItems() {
 			try {
 				BufferedReader br = new BufferedReader(new FileReader(
-						"inputs/InputStoreCreditLarge.txt"));
+						"inputs/InputStoreCredit.txt"));
 				String testcases = br.readLine();
 				int total_test_cases = getInt(testcases);
 				int no_of_test_cases = 0;
@@ -67,7 +86,7 @@ public class StoreCredit {
 			String[] tokens = br.readLine().split(" ");
 			Integer[] prices = getPriceValues(tokens);
 			setItems(prices);
-			return getNumbersFromSum(sumRequired);
+			return getNumbersFromSumWithMergeSort(sumRequired);
 		}
 
 		private Integer[] getPriceValues(String[] tokens) {
