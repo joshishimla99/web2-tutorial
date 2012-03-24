@@ -1,5 +1,12 @@
 package com.gayatri.sort;
 
+/**
+ * Worst case run time	: O(n^2)
+ * Best case run time 	: O(nlogn)
+ * 
+ * @author Gayatri
+ *
+ */
 public class QuickSort extends Sort {
 
 	public QuickSort(Integer[] numbers) {
