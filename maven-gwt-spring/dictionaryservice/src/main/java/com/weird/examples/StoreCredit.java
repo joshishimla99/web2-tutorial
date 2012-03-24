@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 public class StoreCredit {
 
 	static class Items {
@@ -28,24 +29,27 @@ public class StoreCredit {
 			return positions;
 		}
 		
-		Integer[] getNumbersFromSumWithMergeSort(int sum) {
-			Integer[] positions = new Integer[2];
-			MergeSort sort = new MergeSort();
-			sort.merge_sort(item_prices, 0, item_prices.length - 1);
-			int left = 0;
-			int right = item_prices.length - 1;
-			while (left <= right) {
-				if (sum < item_prices[right]) {
-					sum = (item_prices[right] - sum);
-					right--;
-				}
-				else {
-					sum = (sum - item_prices[right]);
-					left++;
-				}
-			}
-			return positions;
-		}		
+//		Integer[] getNumbersFromSumWithMergeSort(int sum) {
+//			Integer[] positions = new Integer[2];
+//			MergeSort sort = new MergeSort();
+//			sort.merge_sort(item_prices, 0, item_prices.length - 1);
+//			int left = 0;
+//			int right = item_prices.length - 1;
+//			while (left <= right) {
+//				if (sum < (item_prices[right] + item_prices[left])) {
+//					right--;
+//				}
+//				else if (sum > (item_prices[right] + item_prices[left])) {
+//					left++;
+//				}
+//				else {
+//					break;
+//				}
+//			}
+//			positions[0] = left;
+//			positions[1] = right;
+//			return positions;
+//		}		
 
 		private int getIndex(Integer[] item_prices2, int required, int previous) {
 			for (int i = 0; i < item_prices2.length; i++) {
@@ -86,7 +90,7 @@ public class StoreCredit {
 			String[] tokens = br.readLine().split(" ");
 			Integer[] prices = getPriceValues(tokens);
 			setItems(prices);
-			return getNumbersFromSumWithMergeSort(sumRequired);
+			return getNumbersFromSum(sumRequired);
 		}
 
 		private Integer[] getPriceValues(String[] tokens) {
