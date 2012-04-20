@@ -10,6 +10,8 @@
   <properties>
     <springVersion>3.1.0.RELEASE</springVersion>
     <strutsVersion>2.3.1.1</strutsVersion>
+    <mavenCompilerPluginVersion>2.3.2</mavenCompilerPluginVersion>
+    <mavenWarPluginVersion>2.1.1</mavenWarPluginVersion>
   </properties>
   <dependencies>
     <dependency>
@@ -61,6 +63,21 @@
                 <warFile>target/spring-web.war</warFile>
             </configuration>
         </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${mavenCompilerPluginVersion}</version>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
+		<plugin>
+        	<groupId>org.apache.maven.plugins</groupId>
+        	<artifactId>maven-war-plugin</artifactId>
+        	<version>${mavenWarPluginVersion}</version>
+        </plugin>
+            
     </plugins>
   </build>
   <name>Spring Webapp</name>
