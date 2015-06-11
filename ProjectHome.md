@@ -1,0 +1,1 @@
+This project wil cover HTML5 and JQuery 101
